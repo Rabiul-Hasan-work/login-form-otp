@@ -20,7 +20,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        if (User.isOTPRequired()) {
+            return User.getOneTimePassword();
+        }
+
+        return User.getPassword();
     }
 
     @Override
